@@ -1,0 +1,25 @@
+{
+  "name": "phoneServer",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "@types/mime-types": "^2.1.4",
+    "@types/uuid": "^10.0.0",
+    "hono": "^4.7.7",
+    "jwt": "^0.2.0",
+    "jwt-decode": "^4.0.0",
+    "mime-types": "^3.0.1",
+    "prisma": "^6.6.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "imports": {
+    "#prisma": [
+      "./prisma/generated/client"
+    ]
+  }
+}

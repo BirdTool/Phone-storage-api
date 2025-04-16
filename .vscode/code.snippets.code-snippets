@@ -1,0 +1,22 @@
+{
+	"Controller Template with Context": {
+		"scope": "typescript",
+		"prefix": "ctc.prisma",
+		"body": [
+			"import { PrismaClient } from '#prisma'",
+			"import { Context } from 'hono'",
+			"",
+			"const prisma = new PrismaClient()",
+			"",
+			"export const ${1:${TM_FILENAME_BASE}} = async (c: Context) => {",
+			"    try {",
+			"        $2",
+			"    } catch (error) {",
+			"        console.error(error)",
+			"        return c.text('Internal Server Error', 500)",
+			"    }",
+			"}"
+		],
+		"description": "Creates a Prisma controller template with Hono Context"
+	}
+}
