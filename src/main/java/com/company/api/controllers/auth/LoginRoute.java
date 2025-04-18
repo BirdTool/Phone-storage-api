@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.company.api.utils.RegisterLog;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import com.company.api.database.Database;
 import com.company.api.utils.JwtTokenUtil;
-import com.company.api.utils.Log;
 
 public class LoginRoute {
     public static void setupRoutes() {
@@ -72,16 +72,17 @@ public class LoginRoute {
                 stmt.setString(1, username);
                 
                 try (var rs = stmt.executeQuery()) {
+                    RegisterLog log = new RegisterLog(sql);
                     if (rs.next()) {
                         String storedPassword = rs.getString("password");
                         int userId = rs.getInt("id");
     
                         if (storedPassword.equals(password)) {
-                            Log.create("Login bem sucedido", userId, sql);
+                            log.create("Sucesso ao fazer login", userId);
                             result.put("success", true);
                             result.put("userId", userId);
                         } else {
-                            Log.create("Login mal sucedido", "Senha incorreta", userId, sql);
+                            log.create("Login mal sucedido", "Senha incorreta", userId);
                         }
                     }
                 }
